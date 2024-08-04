@@ -1,8 +1,10 @@
+import Header from "./components/Header";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="underline">Hello React!</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 };
 export default App;
