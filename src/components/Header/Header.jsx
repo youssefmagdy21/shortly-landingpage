@@ -1,8 +1,11 @@
-import RoundedButton from "./RoundedButton";
-import logo from "../assets/images/logo.svg";
-import menuIcon from "../assets/images/icon-menu.svg";
+import RoundedButton from "../RoundedButton";
+import logo from "/src/assets/images/logo.svg";
+import menuIcon from "/src/assets/images/icon-menu.svg";
+import MobileNav from "./MobileNav";
+import { useState } from "react";
 
 const Header = () => {
+  const [openMenu, setOpenMenu] = useState(false);
   const navItems = [
     {
       id: 0,
@@ -21,7 +24,7 @@ const Header = () => {
     },
   ];
   return (
-    <header className="bg-white text-sm font-bold capitalize text-neutral-grayishViolet">
+    <header className="relative bg-white text-sm font-bold capitalize text-neutral-grayishViolet">
       {/* container */}
       <div className="flex items-center px-6 py-8 md:px-16 md:py-11 lg:px-32 xl:px-40">
         {/* logo */}
@@ -62,7 +65,7 @@ const Header = () => {
 
         {/* mobile nav menu icon */}
         <div className="ml-auto block md:hidden">
-          <button>
+          <button onClick={() => setOpenMenu(!openMenu)}>
             <img
               src={menuIcon}
               alt="mobile-nav-menu-icon"
@@ -72,6 +75,9 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {/* mobile nav menu */}
+      {openMenu && <MobileNav navItems={navItems} />}
     </header>
   );
 };
