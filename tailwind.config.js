@@ -5,6 +5,7 @@ export default {
     colors: {
       primary: {
         cyan: "hsl(180, 66%, 49%)",
+        lightCyan: "hsl(179, 56%, 75%)",
         darkViolet: "hsl(257, 27%, 26%)",
       },
       secondary: {
