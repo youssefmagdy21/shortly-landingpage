@@ -1,46 +1,77 @@
+import RoundedButton from "./RoundedButton";
 import logo from "../assets/images/logo.svg";
-// import menuIcon from "../assets/images/icon-menu.svg";
+import menuIcon from "../assets/images/icon-menu.svg";
+
 const Header = () => {
+  const navItems = [
+    {
+      id: 0,
+      title: "features",
+      link: "#",
+    },
+    {
+      id: 1,
+      title: "pricing",
+      link: "#",
+    },
+    {
+      id: 2,
+      title: "resources",
+      link: "#",
+    },
+  ];
   return (
-    <header className="flex h-20 w-full items-center justify-center border border-black px-16 text-base font-bold capitalize text-neutral-grayishViolet">
-      <h1 className="mr-10">
-        <a href="/">
-          <img src={logo} alt="logo" />
-        </a>
-      </h1>
-      <nav>
-        <ul className="flex gap-8">
-          <li className="transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet">
-            <a href="/" className="block">
-              features
-            </a>
-          </li>
-          <li className="transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet">
-            <a href="/" className="block">
-              pricing
-            </a>
-          </li>
-          <li className="transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet">
-            <a href="/" className="block">
-              resources
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div className="ml-auto">
-        <button className="mr-8 capitalize transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet">
+    <header className="bg-white text-sm font-bold capitalize text-neutral-grayishViolet">
+      {/* container */}
+      <div className="flex items-center px-6 py-8 md:px-16 md:py-11 lg:px-32 xl:px-40">
+        {/* logo */}
+        <span>
           <a href="/" className="block">
-            login
+            <img src={logo} alt="logo" />
           </a>
-        </button>
-        <button className="rounded-3xl bg-primary-cyan px-6 py-2 capitalize text-white transition-opacity duration-300 ease-in-out hover:opacity-60">
-          <a href="/" className="block">
-            sign up
-          </a>
-        </button>
+        </span>
+
+        {/* nav menu */}
+        <nav className="ml-11 hidden md:block">
+          <ul className="flex items-center gap-6">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.link}
+                  className="inline-block transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* buttons */}
+        <div className="ml-auto hidden items-center gap-8 md:flex">
+          <span>
+            <a
+              href="#"
+              className="block transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
+            >
+              login
+            </a>
+          </span>
+          <RoundedButton textValue={"sign up"} link={"#"} />
+        </div>
+
+        {/* mobile nav menu icon */}
+        <div className="ml-auto block md:hidden">
+          <button>
+            <img
+              src={menuIcon}
+              alt="mobile-nav-menu-icon"
+              width={32}
+              height={32}
+            />
+          </button>
+        </div>
       </div>
-      {/* mobile nav to be added */}
-      {/* <img src={menuIcon} alt="mobile-nav-menu-icon" width={32} height={32} /> */}
     </header>
   );
 };
