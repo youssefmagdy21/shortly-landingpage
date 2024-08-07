@@ -52,8 +52,8 @@ const Header = () => {
         </div>
 
         {/* mobile nav menu icon */}
-        <div className="ml-auto block md:hidden">
-          <button onClick={() => setOpenMenu(!openMenu)}>
+        <div className="ml-auto md:hidden">
+          <button className="block" onClick={() => setOpenMenu(!openMenu)}>
             <img
               src={menuIcon}
               alt="mobile-nav-menu-icon"
@@ -63,10 +63,9 @@ const Header = () => {
           </button>
         </div>
       </div>
-
-      {/* mobile nav menu */}
       {openMenu && <MobileNav navItems={navItems} />}
     </header>
   );
 };
+
 export default Header;
