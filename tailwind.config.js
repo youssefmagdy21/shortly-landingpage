@@ -23,7 +23,12 @@ export default {
     fontFamily: {
       poppins: "Poppins, sans-serif",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "boost-desktop": "url('src/assets/images/bg-boost-desktop.svg')",
+        "boost-mobile": "url('src/assets/images/bg-boost-mobile.svg')",
+      },
+    },
   },
   plugins: [],
 };

@@ -1,8 +1,13 @@
-const RoundedButton = ({ textValue }) => {
+const RoundedButton = ({ textValue, link }) => {
   return (
-    <button className="hover:bg-primary-lightCyan rounded-3xl bg-primary-cyan px-6 py-2 font-bold capitalize text-white transition-colors duration-300 ease-in-out">
-      {textValue}
-    </button>
+    <span className="text-center">
+      <a
+        href={link}
+        className="block rounded-[2rem] bg-primary-cyan px-[2em] py-[0.75em] font-bold capitalize text-white transition-colors duration-300 ease-in-out hover:bg-primary-lightCyan"
+      >
+        {textValue}
+      </a>
+    </span>
   );
 };
 export default RoundedButton;
