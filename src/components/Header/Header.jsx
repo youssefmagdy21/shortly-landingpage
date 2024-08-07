@@ -1,8 +1,9 @@
+import { useState } from "react";
+import MainNavbar from "./MainNavbar";
+import MobileNav from "./MobileNav";
 import RoundedButton from "../RoundedButton";
 import logo from "/src/assets/images/logo.svg";
 import menuIcon from "/src/assets/images/icon-menu.svg";
-import MobileNav from "./MobileNav";
-import { useState } from "react";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -35,20 +36,7 @@ const Header = () => {
         </span>
 
         {/* nav menu */}
-        <nav className="ml-11 hidden md:block">
-          <ul className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={item.link}
-                  className="inline-block transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <MainNavbar navItems={navItems} />
 
         {/* buttons */}
         <div className="ml-auto hidden items-center gap-8 md:flex">
