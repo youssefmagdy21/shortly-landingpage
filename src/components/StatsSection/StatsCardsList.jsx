@@ -5,7 +5,8 @@ import customizeIcon from "/src/assets/images/icon-fully-customizable.svg";
 
 const StatsCardsList = () => {
   return (
-    <div className="flex min-h-80 flex-col items-center gap-[5.625rem] min-[1222px]:flex-row min-[1222px]:justify-center min-[1222px]:gap-7">
+    <div className="relative flex min-h-80 flex-col items-center justify-center gap-[5.625rem] min-[1222px]:flex-row min-[1222px]:gap-7">
+      <div className="absolute top-0 h-full w-2 bg-primary-cyan min-[1222px]:top-[calc(50%-0.5rem)] min-[1222px]:h-2 min-[1222px]:w-full min-[1222px]:max-w-[40%]"></div>
       <StatsCard
         icon={brandIcon}
         title={"Brand Recognition"}
