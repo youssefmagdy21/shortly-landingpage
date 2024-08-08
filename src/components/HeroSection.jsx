@@ -16,14 +16,14 @@ const MainSection = () => {
         <article className="px-6 pt-11 md:py-24 md:pl-16 md:pr-0 lg:pl-32 lg:pr-0 xl:pl-40 xl:pr-0">
           <div className="flex flex-col items-center gap-8 md:items-start">
             <div className="text-center md:text-start">
-              <h2 className="mb-4 text-4xl font-bold tracking-[-0.035em] text-neutral-darkBlue md:mb-0 md:text-[2.875rem] lg:text-[54px] xl:text-[4.3125rem]">
+              <h1 className="mb-4 text-4xl font-bold tracking-[-0.035em] text-neutral-darkBlue md:mb-0 md:text-[2.875rem] lg:text-[54px] xl:text-[4.3125rem]">
                 <span className="inline-block md:leading-[1.1]">
                   More than just
                 </span>{" "}
                 <span className="inline-block md:leading-[1.1]">
                   shorter links
                 </span>
-              </h2>
+              </h1>
               <p className="text-neutral-grayishViolet">
                 Build your brand’s recognition and get detailed insights on how
                 your links are performing.
