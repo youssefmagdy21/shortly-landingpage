@@ -4,7 +4,7 @@ import heroImage from "../assets/images/illustration-working.svg";
 const MainSection = () => {
   return (
     <main>
-      <div className="grid grid-cols-1 overflow-x-hidden pb-14 md:grid-cols-[1fr,minmax(0,1fr)]">
+      <div className="grid grid-cols-1 overflow-x-hidden pb-40 md:grid-cols-[1fr,minmax(0,1fr)] md:pb-20 lg:pb-28 xl:pb-40">
         <div className="self-center px-6 md:order-2 md:px-12 lg:px-20 xl:px-24">
           <img
             src={heroImage}
