@@ -3,6 +3,7 @@ import { useState } from "react";
 const ResultCard = ({ inputUrl, shortenedUrl }) => {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const handleLinkCopy = async (e) => {
+    // clipboard functionality
     try {
       await navigator.clipboard.writeText(shortenedUrl);
       setIsLinkCopied(true);
