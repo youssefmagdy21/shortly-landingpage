@@ -20,22 +20,51 @@ const FormSection = () => {
                 Please add a link
               </p> */}
             </div>
-            <button className="rounded-md bg-primary-cyan py-[0.625em] text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-primary-lightCyan">
+            <button className="rounded-md bg-primary-cyan py-[0.6em] text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-primary-lightCyan">
               Shorten It!
             </button>
           </form>
         </div>
 
-        {/* output element */}
-        <div className="mt-5 bg-white">
-          <div>
-            <p className="overflow-hidden text-ellipsis whitespace-nowrap">
-              https://www.frontendmentor.io
-            </p>
+        {/* output elements container */}
+        <div className="mt-5 space-y-5 text-sm">
+          {/* element */}
+          <div className="block rounded-md bg-white shadow-sm">
+            <div className="border-b border-neutral-grayishViolet border-opacity-30 px-4 py-3">
+              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-neutral-darkViolet">
+                https://www.frontendmentor.io
+              </p>
+            </div>
+            <div className="px-4 py-3">
+              <a
+                href="/"
+                className="text-primary-cyan transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
+              >
+                https://rel.ink/k4lKyk
+              </a>
+              <button className="mt-3 block w-full rounded-md bg-primary-cyan py-[0.6em] font-bold text-white transition-colors duration-300 ease-in-out hover:bg-primary-lightCyan">
+                Copy
+              </button>
+            </div>
           </div>
-          <div>
-            <a href="/">https://rel.ink/k4lKyk</a>
-            <button className="block">copy</button>
+
+          <div className="block rounded-md bg-white shadow-sm">
+            <div className="border-b border-neutral-grayishViolet border-opacity-30 px-4 py-3">
+              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-neutral-darkViolet">
+                https://www.frontendmentor.io/sometext/to/test/warpping
+              </p>
+            </div>
+            <div className="px-4 py-3">
+              <a
+                href="/"
+                className="text-primary-cyan transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
+              >
+                https://rel.ink/k4lKyk
+              </a>
+              <button className="mt-3 block w-full rounded-md bg-primary-darkViolet py-[0.6em] font-bold text-white">
+                Copied!
+              </button>
+            </div>
           </div>
         </div>
       </div>
