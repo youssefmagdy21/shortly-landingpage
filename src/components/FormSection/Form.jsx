@@ -1,12 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+
+const API_BASE_URL = "https://cleanuri.com/api/v1/shorten";
 
 const Form = ({ setResults }) => {
   const [inputUrl, setInputUrl] = useState("");
-  const [cardInfo, setCardInfo] = useState({
-    cardID: NaN,
-    inputUrl: "",
-    shortenedUrl: "",
-  });
   const [isInputEmpty, setIsInputEmpty] = useState(false);
 
   const handleFormSubmit = (e) => {
@@ -17,8 +15,25 @@ const Form = ({ setResults }) => {
         throw "empty input!\nPlease enter a link";
       }
       setIsInputEmpty(false);
-      setResults(cardInfo);
-      console.log(`submitted ${inputUrl}`);
+
+      fetch(API_BASE_URL, {
+        method: "POST",
+        body: `url=${encodeURI(inputUrl.toString())}`,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const result_url = data.result_url;
+          setResults({
+            cardID: uuidv4(),
+            inputUrl: inputUrl,
+            shortenedUrl: result_url,
+          });
+          setInputUrl("");
+        })
+        .catch((error) => console.error(error));
     } catch (error) {
       console.error(error);
     }
@@ -26,7 +41,7 @@ const Form = ({ setResults }) => {
 
   return (
     // form container
-    <div className="bg-shorten-mobile md:bg-shorten-desktop -mb-20 flex -translate-y-20 items-center justify-center rounded-lg bg-primary-darkViolet bg-right-top bg-no-repeat p-6 md:bg-cover md:px-14 md:py-12">
+    <div className="-mb-20 flex -translate-y-20 items-center justify-center rounded-lg bg-primary-darkViolet bg-shorten-mobile bg-right-top bg-no-repeat p-6 md:bg-shorten-desktop md:bg-cover md:px-14 md:py-12">
       <form
         className="flex w-full flex-col gap-3 md:flex-row md:gap-5"
         onSubmit={handleFormSubmit}
