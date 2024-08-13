@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-const API_BASE_URL = "https://cleanuri.com/api/v1/shorten";
+const API_BASE_URL = "https://spoo.me/";
 
 const Form = ({ setResults }) => {
   const [inputUrl, setInputUrl] = useState("");
@@ -12,24 +12,25 @@ const Form = ({ setResults }) => {
     try {
       if (!inputUrl) {
         setIsInputEmpty(true);
-        throw "empty input!\nPlease enter a link";
+        throw new Error("empty input!\nPlease enter a link");
       }
       setIsInputEmpty(false);
 
       fetch(API_BASE_URL, {
         method: "POST",
-        body: `url=${encodeURI(inputUrl.toString())}`,
+        body: `url=${encodeURI(inputUrl)}`,
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/x-www-form-urlencoded",
         },
       })
         .then((res) => res.json())
         .then((data) => {
-          const result_url = data.result_url;
+          const shortenedUrl = data.short_url;
           setResults({
             cardID: uuidv4(),
             inputUrl: inputUrl,
-            shortenedUrl: result_url,
+            shortenedUrl: shortenedUrl,
           });
           setInputUrl("");
         })
