@@ -24,6 +24,7 @@ const ResultCard = ({ inputUrl, shortenedUrl }) => {
       <div className="block px-4 py-3 md:flex md:items-center md:gap-6 md:p-0">
         <a
           href={shortenedUrl}
+          target="_blank"
           className="text-primary-cyan transition-colors duration-300 ease-in-out hover:text-neutral-darkViolet"
         >
           {shortenedUrl}

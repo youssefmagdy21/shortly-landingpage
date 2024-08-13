@@ -1,11 +1,12 @@
-import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const API_BASE_URL = "https://spoo.me/";
 
 const Form = ({ setResults }) => {
   const [inputUrl, setInputUrl] = useState("");
   const [isInputEmpty, setIsInputEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +16,8 @@ const Form = ({ setResults }) => {
         throw new Error("empty input!\nPlease enter a link");
       }
       setIsInputEmpty(false);
-
+      setIsLoading(true);
+      e.target.submitBtn.disabled = true;
       fetch(API_BASE_URL, {
         method: "POST",
         body: `url=${encodeURI(inputUrl)}`,
@@ -33,6 +35,8 @@ const Form = ({ setResults }) => {
             shortenedUrl: shortenedUrl,
           });
           setInputUrl("");
+          setIsLoading(false);
+          e.target.submitBtn.disabled = false;
         })
         .catch((error) => console.error(error));
     } catch (error) {
@@ -41,7 +45,6 @@ const Form = ({ setResults }) => {
   };
 
   return (
-    // form container
     <div className="-mb-20 flex -translate-y-20 items-center justify-center rounded-lg bg-primary-darkViolet bg-shorten-mobile bg-right-top bg-no-repeat p-6 md:bg-shorten-desktop md:bg-cover md:px-14 md:py-12">
       <form
         className="flex w-full flex-col gap-3 md:flex-row md:gap-5"
@@ -64,9 +67,10 @@ const Form = ({ setResults }) => {
         </div>
         <button
           type="submit"
+          name="submitBtn"
           className="rounded-md bg-primary-cyan py-[0.6em] text-base font-bold leading-normal text-white transition-colors duration-300 ease-in-out hover:bg-primary-lightCyan md:rounded-lg md:px-10 md:py-0"
         >
-          Shorten It!
+          {!isLoading ? "Shorten It!" : "Loading..."}
         </button>
       </form>
     </div>
