@@ -7,6 +7,7 @@ const Form = ({ setResults }) => {
   const [inputUrl, setInputUrl] = useState("");
   const [isInputEmpty, setIsInputEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isInvalidUrl, setIsInvalidUrl] = useState(false);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +16,6 @@ const Form = ({ setResults }) => {
         setIsInputEmpty(true);
         throw new Error("empty input!\nPlease enter a link");
       }
-      setIsInputEmpty(false);
       setIsLoading(true);
       e.target.submitBtn.disabled = true;
       fetch(API_BASE_URL, {
@@ -26,7 +26,9 @@ const Form = ({ setResults }) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          return res.ok ? res.json() : Promise.reject(res);
+        })
         .then((data) => {
           const shortenedUrl = data.short_url;
           setResults({
@@ -38,7 +40,13 @@ const Form = ({ setResults }) => {
           setIsLoading(false);
           e.target.submitBtn.disabled = false;
         })
-        .catch((error) => console.error(error));
+        .catch((res) => {
+          setIsLoading(false);
+          e.target.submitBtn.disabled = false;
+          res.json().then((content) => {
+            if (content.UrlError) setIsInvalidUrl(true);
+          });
+        });
     } catch (error) {
       console.error(error);
     }
@@ -55,14 +63,24 @@ const Form = ({ setResults }) => {
             type="text"
             name="inputUrl"
             value={inputUrl}
-            onChange={(e) => setInputUrl(e.target.value.trim())}
+            onChange={(e) => {
+              setInputUrl(e.target.value.trim());
+              setIsInvalidUrl(false);
+              setIsInputEmpty(false);
+            }}
             placeholder="Shorten a link here..."
-            className={`w-full rounded-md px-4 py-2 placeholder:text-sm placeholder:text-neutral-grayishViolet placeholder:opacity-70 focus-visible:outline-primary-cyan focus-visible:ring-0 md:rounded-lg md:px-7 md:py-[0.875rem] md:placeholder:text-base ${isInputEmpty && "ring-2 ring-inset ring-secondary-red placeholder:text-secondary-red placeholder:opacity-50"}`}
+            className={`w-full rounded-md px-4 py-2 placeholder:text-sm placeholder:text-neutral-grayishViolet placeholder:opacity-70 focus-visible:outline-primary-cyan focus-visible:ring-0 md:rounded-lg md:px-7 md:py-[0.875rem] md:placeholder:text-base ${(isInputEmpty || isInvalidUrl) && "ring-2 ring-inset ring-secondary-red placeholder:text-secondary-red placeholder:opacity-50"}`}
           />
-          {isInputEmpty && (
+          {isInputEmpty ? (
             <p className="-bottom-7 mt-1 text-xs italic leading-4 text-secondary-red md:absolute md:mt-0 md:text-sm">
               Please add a link
             </p>
+          ) : isInvalidUrl ? (
+            <p className="-bottom-7 mt-1 text-xs italic leading-4 text-secondary-red md:absolute md:mt-0 md:text-sm">
+              Please enter a valid link
+            </p>
+          ) : (
+            <></>
           )}
         </div>
         <button
