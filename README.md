@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [frontendmentor.io/solutions/responsive-url-shortening-api-landing-page-MSxS0f2u9d](https://www.frontendmentor.io/solutions/responsive-url-shortening-api-landing-page-MSxS0f2u9d)
 - Live Site URL: [youssefmagdy21.github.io/shortly-landingpage/](https://youssefmagdy21.github.io/shortly-landingpage/)
 
 ## My process
