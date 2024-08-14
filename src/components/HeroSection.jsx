@@ -29,7 +29,10 @@ const MainSection = () => {
                 your links are performing.
               </p>
             </div>
-            <RoundedButton textValue={"get started"} link={"/"} />
+            <RoundedButton
+              textValue={"get started"}
+              link={"/shortly-landingpage/"}
+            />
           </div>
         </article>
       </div>

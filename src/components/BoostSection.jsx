@@ -14,7 +14,10 @@ const BoostSection = () => {
           <h2 className="text-2xl font-bold md:text-4xl">
             Boost your links today
           </h2>
-          <RoundedButton textValue={"get started"} link={"/"} />
+          <RoundedButton
+            textValue={"get started"}
+            link={"/shortly-landingpage/"}
+          />
         </div>
       </div>
     </section>
